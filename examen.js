@@ -226,7 +226,24 @@ const catalogo = [
 
     document.getElementById("btnPrecio").addEventListener("click", () => {
       const ordenados = catalogo.sort((a, b) => b.precio - a.precio);
-      return mostrarProductos(ordenados);
+      mostrarMasCaro(ordenados);
     });
+
+    function mostrarMasCaro(productos) {
+      let tablaProductos = "<table id=tabla border='1' cellspacing='0' cellpadding='5'>";
+      tablaProductos += "<tr><th>Nombre Producto</th><th>Precio</th><th>Categoria</th><th>Imagen</th></tr>";
+
+      for (let p of productos) {
+        tablaProductos += `
+        <tr>
+          <td>${p.nombre}</td>
+          <td>${p.precio}</td>
+          <td>${p.categoria}</td>
+          <td><img src="${p.imagen}" width="80"></td>
+        </tr>`;
+      }
+      tablaProductos += "</table>";
+      document.getElementById("TablaProductos").innerHTML = tablaProductos;
+    }
   
     
